@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { SheetsModule } from './sheets/sheets.module';
-import { AppController } from './app.controller';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -14,7 +14,7 @@ import { AppController } from './app.controller';
     UsersModule,
     SheetsModule,
   ],
-  controllers: [AppController],
+  controllers: [],
   providers: [],
 })
 export class AppModule {}

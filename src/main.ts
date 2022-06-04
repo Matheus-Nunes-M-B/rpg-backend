@@ -7,6 +7,10 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.setGlobalPrefix('api');
+
+  app.useGlobalPipes(new ValidationPipe({}));
+
   const config = new DocumentBuilder()
     .setTitle('RPG API')
     .setDescription('Swagger API Documentation')
@@ -16,10 +20,9 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   writeFileSync('./swagger-spec.json', JSON.stringify(document));
   SwaggerModule.setup('doc', app, document);
-  app.setGlobalPrefix('api');
 
-  app.useGlobalPipes(new ValidationPipe({}));
+  await app.listen(8000);
 
-  await app.listen(3000);
+
 }
 bootstrap();

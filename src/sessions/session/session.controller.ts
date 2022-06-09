@@ -1,13 +1,28 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { SessionService } from './session.service';
 import { CreateSessionDto } from './dto/create-session.dto';
 import { UpdateSessionDto } from './dto/update-session.dto';
+import { ApiResponse } from '@nestjs/swagger';
+import { Session } from './entities/session.entity';
 
 @Controller('session')
 export class SessionController {
   constructor(private readonly sessionService: SessionService) {}
 
   @Post()
+  @ApiResponse({
+    status: 201,
+    type: Session,
+    description: 'The record has been successfully created.',
+  })
   create(@Body() createSessionDto: CreateSessionDto) {
     return this.sessionService.create(createSessionDto);
   }
@@ -18,17 +33,17 @@ export class SessionController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.sessionService.findOne(+id);
+  findOne(@Param('id') id: number) {
+    return this.sessionService.findOneBy({ id });
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSessionDto: UpdateSessionDto) {
+  update(@Param('id') id: number, @Body() updateSessionDto: UpdateSessionDto) {
     return this.sessionService.update(+id, updateSessionDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.sessionService.remove(+id);
+  remove(@Param('id') id: number) {
+    return this.sessionService.delete(+id);
   }
 }

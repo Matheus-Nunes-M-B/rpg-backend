@@ -1,16 +1,11 @@
-import {
-  BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn,
-} from 'typeorm';
-import { hashSync } from 'bcrypt';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-
+import { Sheet } from 'src/sheets/sheet/entities/sheet.entity';
 
 export enum UserType {
-  MASTER = "MASTER",
-  PLAYER = 'PLAYER'
+  MASTER = 'MASTER',
+  PLAYER = 'PLAYER',
 }
-
-
 
 @Entity()
 export class User {
@@ -22,7 +17,7 @@ export class User {
   @ApiProperty()
   name: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, unique: true })
   @ApiProperty()
   username: string;
 
@@ -30,11 +25,6 @@ export class User {
   @ApiProperty()
   type: UserType;
 
-  @CreateDateColumn({ name: 'created_at' })
-  @ApiProperty()
-  createdAt: Date;
-
-  @UpdateDateColumn({ name: 'updated_at' })
-  @ApiProperty()
-  updatedAt: Date;
+  @OneToMany(() => Sheet, (sheet) => sheet.owner)
+  sheets: Sheet[];
 }

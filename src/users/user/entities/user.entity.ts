@@ -1,6 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { Sheet } from 'src/sheets/sheet/entities/sheet.entity';
+import { Session } from 'src/sessions/session/entities/session.entity';
 
 export enum UserType {
   MASTER = 'MASTER',
@@ -27,4 +28,7 @@ export class User {
 
   @OneToMany(() => Sheet, (sheet) => sheet.owner)
   sheets: Sheet[];
+
+  @OneToMany(() => Session, (session) => session.master)
+  sessions: Session[];
 }

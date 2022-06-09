@@ -1,5 +1,11 @@
 import {
-  Controller, Get, Post, Body, Patch, Param, Delete,
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
 } from '@nestjs/common';
 import { SheetService } from './sheet.service';
 import { CreateSheetDto } from './dto/create-sheet.dto';
@@ -20,17 +26,19 @@ export class SheetController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.sheetService.findOne(+id);
+  findOne(@Param('id') id: number) {
+    return this.sheetService.findOneBy({
+      id,
+    });
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSheetDto: UpdateSheetDto) {
-    return this.sheetService.update(+id, updateSheetDto);
+  update(@Param('id') id: number, @Body() updateSheetDto: UpdateSheetDto) {
+    return this.sheetService.update(id, updateSheetDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.sheetService.remove(+id);
+  remove(@Param('id') id: number) {
+    return this.sheetService.delete(id);
   }
 }

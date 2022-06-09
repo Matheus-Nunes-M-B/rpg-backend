@@ -5,7 +5,6 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -13,7 +12,7 @@ export type Law_Chaos = 'Lawful' | 'Neutral' | 'Chaotic';
 export type Good_Evil = 'Good' | 'Neutral' | 'Evil';
 export type Alignment = `${Law_Chaos} - ${Good_Evil}`;
 
-export enum Role {
+export enum SheetRole {
   Mage = 'Mage',
   Warrior = 'Warrior',
   Rogue = 'Rogue',
@@ -55,7 +54,7 @@ export class Sheet {
   @ApiProperty()
   // DATA
   @Column()
-  role: Role;
+  role: SheetRole;
 
   @ApiProperty()
   @Column({ default: 1 })

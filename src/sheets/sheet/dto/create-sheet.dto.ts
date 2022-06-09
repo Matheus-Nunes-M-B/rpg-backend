@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Alignment, Role } from '../entities/sheet.entity';
+import { Alignment, SheetRole } from '../entities/sheet.entity';
 
 export class CreateSheetDto {
   id: number;
@@ -21,7 +21,7 @@ export class CreateSheetDto {
   background: string;
 
   @ApiProperty()
-  role: Role;
+  role: SheetRole;
 
   @ApiProperty()
   level: number;

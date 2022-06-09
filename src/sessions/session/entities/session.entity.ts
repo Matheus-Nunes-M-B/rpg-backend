@@ -5,7 +5,9 @@ import {
   Column,
   Entity,
   JoinColumn,
+  ManyToMany,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -29,11 +31,17 @@ export class Session {
   @ApiProperty()
   @Column()
   background: string;
+  @ApiProperty({ type: () => Sheet })
+  @OneToMany(() => Sheet, (sheet) => sheet.session)
   sheets: Sheet[];
+  @ApiProperty({ type: () => User })
+  @ManyToMany(() => User, (user) => user.sessions)
   players: User[];
-  @ManyToOne(() => User, (user) => user.sessions)
+  @ApiProperty({ type: () => User })
+  @ManyToOne(() => User, (user) => user.mySessions)
   @JoinColumn({ name: 'master_id' })
   master: User;
+  @ApiProperty()
   @Column({ name: 'master_id' })
   masterId: number;
 }

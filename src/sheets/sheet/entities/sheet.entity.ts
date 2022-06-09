@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Session } from 'src/sessions/session/entities/session.entity';
 import { User } from 'src/users/user/entities/user.entity';
 import {
   Column,
@@ -84,10 +85,19 @@ export class Sheet {
   @Column({ default: 10 })
   constitution: number;
 
-  @ApiProperty()
+  @ApiProperty({ type: () => User })
   @ManyToOne(() => User, (user) => user.sheets)
   @JoinColumn({ name: 'owner_id' })
   owner: User;
   @Column({ name: 'owner_id' })
   ownerId: number;
+  @ApiProperty()
+  @ManyToOne(() => Session, (session) => session.sheets)
+  @JoinColumn({ name: 'session_id' })
+  session: Session;
+  @Column({
+    name: 'session_id',
+    nullable: true,
+  })
+  sessionId: number;
 }

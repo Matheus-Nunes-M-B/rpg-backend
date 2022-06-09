@@ -1,4 +1,11 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { Sheet } from 'src/sheets/sheet/entities/sheet.entity';
 import { Session } from 'src/sessions/session/entities/session.entity';
@@ -30,5 +37,12 @@ export class User {
   sheets: Sheet[];
 
   @OneToMany(() => Session, (session) => session.master)
+  mySessions: Session[];
+
+  @ManyToMany(() => Session, (session) => session.players)
+  @JoinTable({
+    joinColumn: { name: 'session_id' },
+    inverseJoinColumn: { name: 'player_id' },
+  })
   sessions: Session[];
 }

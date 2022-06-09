@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { SheetsModule } from './sheets/sheets.module';
+import { SessionsModule } from './sessions/sessions.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { SheetsModule } from './sheets/sheets.module';
     } as TypeOrmModuleOptions),
     UsersModule,
     SheetsModule,
+    SessionsModule,
   ],
   controllers: [],
   providers: [],

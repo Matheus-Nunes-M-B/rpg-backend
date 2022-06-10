@@ -41,8 +41,9 @@ export class User {
 
   @ManyToMany(() => Session, (session) => session.players)
   @JoinTable({
-    joinColumn: { name: 'session_id' },
-    inverseJoinColumn: { name: 'player_id' },
+    name: 'user_session',
+    joinColumn: { name: 'player_id' },
+    inverseJoinColumn: { name: 'session_id' },
   })
   sessions: Session[];
 }

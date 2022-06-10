@@ -26,7 +26,7 @@ export class Session {
   @Column()
   name: string;
   @ApiProperty()
-  @Column()
+  @Column({ default: SessionStatus.OFFLINE })
   status: SessionStatus;
   @ApiProperty()
   @Column()

@@ -10,10 +10,11 @@ import {
 import { SessionService } from './session.service';
 import { CreateSessionDto } from './dto/create-session.dto';
 import { UpdateSessionDto } from './dto/update-session.dto';
-import { ApiResponse } from '@nestjs/swagger';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Session } from './entities/session.entity';
 
-@Controller('Session')
+@ApiTags('Session')
+@Controller('session')
 export class SessionController {
   constructor(private readonly sessionService: SessionService) {}
 

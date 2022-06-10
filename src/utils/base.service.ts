@@ -9,11 +9,14 @@ import {
   SaveOptions,
 } from 'typeorm';
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
-import { EntityDeletedResponse } from './responses';
+import { EntityDeletedResponse, EntityUpdatedResponse } from './responses';
 
 export class BaseService<Entity, CreateDto, UpdateDto> {
   constructor(private readonly __repo: Repository<Entity>) {}
 
+  save(entity: Entity) {
+    return this.__repo.save(entity);
+  }
   findAll(options?: FindManyOptions<Entity>): Promise<Entity[]> {
     return this.__repo.find(options);
   }
@@ -134,12 +137,12 @@ export class BaseService<Entity, CreateDto, UpdateDto> {
       | ObjectID[]
       | FindOptionsWhere<Entity>,
     partialEntity: QueryDeepPartialEntity<Entity> | UpdateDto,
-  ): Promise<EntityDeletedResponse> {
+  ): Promise<EntityUpdatedResponse> {
     const result = await this.__repo.update(criteria, partialEntity);
     if (result.affected === 0) {
       throw new NotFoundException(this.__repo.metadata.name);
     }
-    return new EntityDeletedResponse(
+    return new EntityUpdatedResponse(
       this.__repo.metadata.name,
       result.affected,
       criteria as string,

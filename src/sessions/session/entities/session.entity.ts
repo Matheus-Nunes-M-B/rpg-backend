@@ -5,6 +5,7 @@ import {
   Column,
   Entity,
   JoinColumn,
+  JoinTable,
   ManyToMany,
   ManyToOne,
   OneToMany,
@@ -34,9 +35,16 @@ export class Session {
   @ApiProperty({ type: () => Sheet })
   @OneToMany(() => Sheet, (sheet) => sheet.session)
   sheets: Sheet[];
+
   @ApiProperty({ type: () => User })
   @ManyToMany(() => User, (user) => user.sessions)
+  @JoinTable({
+    name: 'user_session',
+    joinColumn: { name: 'session_id' },
+    inverseJoinColumn: { name: 'player_id' },
+  })
   players: User[];
+
   @ApiProperty({ type: () => User })
   @ManyToOne(() => User, (user) => user.mySessions)
   @JoinColumn({ name: 'master_id' })

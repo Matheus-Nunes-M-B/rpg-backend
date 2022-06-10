@@ -10,6 +10,7 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { FindOneParams } from '~/utils/find-one.params';
 import { NestedInUserParams } from '../user/dto/nested-in-user.params';
+import { ChangeUserSessionStatusParams } from './dto/change-user-session-status.params';
 import { CreateUserSessionDto } from './dto/create-user-session.dto';
 import { UpdateUserSessionDto } from './dto/update-user-session.dto';
 import { UserSessionService } from './user-session.service';
@@ -92,21 +93,22 @@ export class UserSessionController {
     return this.service.join(userId, id);
   }
   @Post(':id/leave')
-  leave(
+  async leave(
     @Param() { userId }: NestedInUserParams,
     @Param() { id }: FindOneParams,
   ) {
     return this.service.leave(userId, id);
   }
-  @Post(':id/start')
-  start(
+  @Post(':id/status/:status')
+  async changeStatus(
     @Param() { userId }: NestedInUserParams,
     @Param() { id }: FindOneParams,
+    @Param() { status }: ChangeUserSessionStatusParams,
   ) {
-    return this.service.start(userId, id);
-  }
-  @Post(':id/end')
-  end(@Param() { userId }: NestedInUserParams, @Param() { id }: FindOneParams) {
-    return this.service.end(userId, id);
+    const session = await this.service.findOneByOrFail({
+      masterId: userId,
+      id,
+    });
+    return this.service.update(session.id, { status });
   }
 }

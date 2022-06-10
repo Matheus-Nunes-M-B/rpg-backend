@@ -13,7 +13,7 @@ import { UpdateSessionDto } from './dto/update-session.dto';
 import { ApiResponse } from '@nestjs/swagger';
 import { Session } from './entities/session.entity';
 
-@Controller('session')
+@Controller('Session')
 export class SessionController {
   constructor(private readonly sessionService: SessionService) {}
 

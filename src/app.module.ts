@@ -7,8 +7,12 @@ import { SessionsModule } from './sessions/sessions.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: '../sqlite3.sqlite3',
+      type: 'postgres',
+      database: 'rpg-backend',
+      username: 'postgres',
+      password: 'postgres',
+      host: 'localhost',
+      port: 5432,
       entities: ['dist/**/*.entity.js'],
       synchronize: true,
     } as TypeOrmModuleOptions),

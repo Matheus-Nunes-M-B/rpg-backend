@@ -3,7 +3,7 @@ import { IsEnum } from 'class-validator';
 import { SessionStatus } from '~/sessions/session/entities/session.entity';
 
 export class ChangeUserSessionStatusParams {
-  @ApiProperty()
+  @ApiProperty({ enum: SessionStatus })
   @IsEnum(SessionStatus)
   status: SessionStatus;
 }

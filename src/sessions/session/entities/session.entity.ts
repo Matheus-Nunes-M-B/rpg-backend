@@ -16,7 +16,7 @@ export enum SessionStatus {
   ONLINE = 'ONLINE',
   OFFLINE = 'OFFLINE',
   COMPLETED = 'COMPLETED',
-  CANCELED = 'CANCELED',
+  CLOSED = 'CLOSED',
 }
 
 @Entity()

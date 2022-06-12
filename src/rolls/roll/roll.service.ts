@@ -1,26 +1,18 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { BaseService } from '~/utils/base.service';
 import { CreateRollDto } from './dto/create-roll.dto';
 import { UpdateRollDto } from './dto/update-roll.dto';
+import { Roll } from './entities/roll.entity';
 
 @Injectable()
-export class RollService {
-  create(createRollDto: CreateRollDto) {
-    return 'This action adds a new roll';
-  }
-
-  findAll() {
-    return `This action returns all roll`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} roll`;
-  }
-
-  update(id: number, updateRollDto: UpdateRollDto) {
-    return `This action updates a #${id} roll`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} roll`;
+export class RollService extends BaseService<
+  Roll,
+  CreateRollDto,
+  UpdateRollDto
+> {
+  constructor(@InjectRepository(Roll) repo: Repository<Roll>) {
+    super(repo);
   }
 }

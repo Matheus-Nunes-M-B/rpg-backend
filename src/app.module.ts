@@ -3,7 +3,7 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { SheetsModule } from './sheets/sheets.module';
 import { SessionsModule } from './sessions/sessions.module';
-import { DicesModule } from './dices/dices.module';
+import { RollsModule } from './rolls/rolls.module';
 
 @Module({
   imports: [
@@ -20,7 +20,7 @@ import { DicesModule } from './dices/dices.module';
     UsersModule,
     SheetsModule,
     SessionsModule,
-    DicesModule,
+    RollsModule,
   ],
   controllers: [],
   providers: [],

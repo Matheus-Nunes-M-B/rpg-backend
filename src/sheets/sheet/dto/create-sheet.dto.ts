@@ -43,4 +43,7 @@ export class CreateSheetDto {
 
   @ApiProperty()
   constitution: number;
+
+  @ApiProperty()
+  ownerId: number;
 }

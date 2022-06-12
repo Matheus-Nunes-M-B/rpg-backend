@@ -10,7 +10,9 @@ import {
 import { SheetService } from './sheet.service';
 import { CreateSheetDto } from './dto/create-sheet.dto';
 import { UpdateSheetDto } from './dto/update-sheet.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Sheet')
 @Controller('sheet')
 export class SheetController {
   constructor(private readonly sheetService: SheetService) {}

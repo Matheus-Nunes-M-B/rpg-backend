@@ -15,32 +15,41 @@ import { ApiTags } from '@nestjs/swagger';
 @ApiTags('Sheet')
 @Controller('sheet')
 export class SheetController {
-  constructor(private readonly sheetService: SheetService) {}
+  constructor(private readonly service: SheetService) {}
 
   @Post()
   create(@Body() createSheetDto: CreateSheetDto) {
-    return this.sheetService.create(createSheetDto);
+    return this.service.create(createSheetDto);
   }
 
   @Get()
   findAll() {
-    return this.sheetService.findAll();
+    return this.service.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: number) {
-    return this.sheetService.findOneBy({
+    return this.service.findOneByOrFail({
       id,
     });
   }
 
   @Patch(':id')
-  update(@Param('id') id: number, @Body() updateSheetDto: UpdateSheetDto) {
-    return this.sheetService.update(id, updateSheetDto);
+  async update(
+    @Param('id') id: number,
+    @Body() updateSheetDto: UpdateSheetDto,
+  ) {
+    await this.service.findOneByOrFail({
+      id,
+    });
+    return this.service.update(id, updateSheetDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number) {
-    return this.sheetService.delete(id);
+  async remove(@Param('id') id: number) {
+    await this.service.findOneByOrFail({
+      id,
+    });
+    return this.service.delete(id);
   }
 }

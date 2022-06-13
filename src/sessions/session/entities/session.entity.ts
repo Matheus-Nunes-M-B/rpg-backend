@@ -32,6 +32,11 @@ export class Session {
   @ApiProperty()
   @Column()
   background: string;
+
+  @ApiProperty()
+  @Column({ nullable: true })
+  avatar: string;
+
   @ApiProperty({ type: () => Sheet })
   @OneToMany(() => Sheet, (sheet) => sheet.session)
   sheets: Sheet[];

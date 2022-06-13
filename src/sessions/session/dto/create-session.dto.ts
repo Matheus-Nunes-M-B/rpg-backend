@@ -1,10 +1,12 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreateSessionDto {
   @ApiProperty()
   name: string;
-  @ApiProperty({ required: false })
+  @ApiPropertyOptional()
   background: string;
   @ApiProperty()
   masterId: number;
+  @ApiPropertyOptional()
+  avatar?: string;
 }

@@ -42,14 +42,9 @@ export class User {
   @OneToMany(() => Sheet, (sheet) => sheet.owner)
   sheets: Sheet[];
 
-  @OneToMany(() => Session, (session) => session.master)
+  @ManyToMany(() => Session, (session) => session.master)
   mySessions: Session[];
 
   @ManyToMany(() => Session, (session) => session.players)
-  @JoinTable({
-    name: 'user_session',
-    joinColumn: { name: 'player_id' },
-    inverseJoinColumn: { name: 'session_id' },
-  })
   sessions: Session[];
 }

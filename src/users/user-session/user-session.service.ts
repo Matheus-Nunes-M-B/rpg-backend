@@ -41,7 +41,7 @@ export class UserSessionService extends BaseService<
       where: { id },
       relations: ['players'],
     });
-    session.players = session.players.filter((player) => player.id !== userId);
+    session.players = session.players.filter((player) => player.id === userId);
     return this.save(session);
   }
 }

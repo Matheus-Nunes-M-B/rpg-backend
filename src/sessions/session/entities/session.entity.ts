@@ -46,9 +46,10 @@ export class Session {
   players: User[];
 
   @ApiProperty({ type: () => User })
-  @ManyToOne(() => User, (user) => user.mySessions)
+  @ManyToMany(() => User, (user) => user.mySessions)
   @JoinColumn({ name: 'master_id' })
   master: User;
+
   @ApiProperty()
   @Column({ name: 'master_id' })
   masterId: number;

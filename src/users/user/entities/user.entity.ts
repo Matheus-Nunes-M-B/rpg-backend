@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  Index,
   JoinTable,
   ManyToMany,
   OneToMany,
@@ -27,6 +28,7 @@ export class User {
 
   @Column({ nullable: true, unique: true })
   @ApiProperty()
+  @Index()
   username: string;
 
   @Column({ nullable: true })

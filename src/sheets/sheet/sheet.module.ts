@@ -5,10 +5,9 @@ import { SheetController } from './sheet.controller';
 import { Sheet } from './entities/sheet.entity';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Sheet]),
-  ],
+  imports: [TypeOrmModule.forFeature([Sheet])],
   controllers: [SheetController],
   providers: [SheetService],
+  exports: [SheetService],
 })
-export class SheetModule { }
+export class SheetModule {}

@@ -53,7 +53,10 @@ export class UserSessionController {
   }
 
   @Get(':id')
-  findOneAsPlayer(@Param('userId') userId: number, @Param() id: number) {
+  findOneAsPlayer(
+    @Param() { userId }: NestedInUserParams,
+    @Param() { id }: FindOneParams,
+  ) {
     return this.service.findOneByOrFail({
       id,
       players: { id: userId },

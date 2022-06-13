@@ -33,6 +33,10 @@ export class User {
 
   @Column({ nullable: true })
   @ApiProperty()
+  avatar: string;
+
+  @Column({ nullable: true })
+  @ApiProperty()
   type: UserType;
 
   @OneToMany(() => Sheet, (sheet) => sheet.owner)

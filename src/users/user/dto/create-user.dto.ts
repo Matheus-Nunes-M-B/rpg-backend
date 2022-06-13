@@ -8,6 +8,9 @@ export class CreateUserDto {
   @ApiProperty()
   username: string;
 
+  @ApiProperty()
+  avatar: string;
+
   @ApiProperty({ enum: UserType })
   type: UserType;
 }

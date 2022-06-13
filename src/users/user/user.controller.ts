@@ -38,6 +38,13 @@ export class UserController {
     return this.userService.findOneBy({ id });
   }
 
+  @Get('username/:username')
+  findOneByName(@Param('username') username: string) {
+    return this.userService.findOneBy({
+      username,
+    });
+  }
+
   @Patch(':id')
   update(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(id, updateUserDto);

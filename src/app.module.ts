@@ -8,12 +8,8 @@ import { RollsModule } from './rolls/rolls.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      database: 'rpg-backend',
-      username: 'postgres',
-      password: 'postgres',
-      host: 'localhost',
-      port: 5432,
+      type: 'sqlite',
+      database: '../sqlite3.sqlite3',
       entities: ['dist/**/*.entity.js'],
       synchronize: true,
     } as TypeOrmModuleOptions),

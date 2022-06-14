@@ -10,6 +10,7 @@ import {
 import { ApiProperty } from '@nestjs/swagger';
 import { Sheet } from 'src/sheets/sheet/entities/sheet.entity';
 import { Session } from 'src/sessions/session/entities/session.entity';
+import { Roll } from '~/rolls/roll/entities/roll.entity';
 
 export enum UserType {
   MASTER = 'MASTER',
@@ -47,4 +48,7 @@ export class User {
 
   @ManyToMany(() => Session, (session) => session.players)
   sessions: Session[];
+
+  @OneToMany(() => Roll, (roll) => roll.owner)
+  rolls: Roll[];
 }

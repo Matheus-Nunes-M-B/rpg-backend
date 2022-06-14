@@ -22,7 +22,7 @@ export class Roll {
   @Column()
   total: number;
 
-  @ManyToOne(() => User, { eager: true })
+  @ManyToOne(() => User, (user) => user.rolls, { eager: true })
   owner: User;
   @Column({ name: 'owner_id' })
   ownerId: number;

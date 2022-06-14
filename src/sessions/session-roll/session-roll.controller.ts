@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { RollService } from '~/rolls/roll/roll.service';
 import { FindOneParams } from '~/utils/find-one.params';
 import { SessionService } from '../session/session.service';
@@ -14,7 +15,8 @@ import { CreateSessionRollDto } from './dto/create-session-roll.dto';
 import { NestedInSessionParams } from './dto/nested-in-sessions.params';
 import { UpdateSessionRollDto } from './dto/update-session-roll.dto';
 
-@Controller('session-roll')
+@ApiTags('Session/Roll')
+@Controller('session/:sessionId/roll')
 export class SessionRollController {
   constructor(
     private readonly sessionService: SessionService,

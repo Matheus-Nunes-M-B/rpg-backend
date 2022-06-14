@@ -34,6 +34,7 @@ export class SessionRollController {
   @Get()
   findAll(@Param() { sessionId }: NestedInSessionParams) {
     return this.rollService.findAll({
+      relations: ['owner'],
       where: {
         sessionId,
       },

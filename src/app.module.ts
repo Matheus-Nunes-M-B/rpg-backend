@@ -9,7 +9,7 @@ import { RollsModule } from './rolls/rolls.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: '../sqlite3.sqlite3',
+      database: './sqlite3.db',
       entities: ['dist/**/*.entity.js'],
       synchronize: true,
     } as TypeOrmModuleOptions),

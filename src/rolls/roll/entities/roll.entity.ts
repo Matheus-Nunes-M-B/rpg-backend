@@ -3,6 +3,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -19,10 +20,11 @@ export class Roll {
   public readonly expression: string;
   @Column()
   result: string;
-  @Column()
+  @Column({ default: 0 })
   total: number;
 
   @ManyToOne(() => User, (user) => user.rolls, { eager: true })
+  @JoinColumn({ name: 'owner_id' })
   owner: User;
   @Column({ name: 'owner_id' })
   ownerId: number;

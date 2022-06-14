@@ -1,4 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { SessionStatus } from '../entities/session.entity';
 
 export class CreateSessionDto {
   @ApiProperty()
@@ -9,4 +10,6 @@ export class CreateSessionDto {
   masterId: number;
   @ApiPropertyOptional()
   avatar?: string;
+  @ApiPropertyOptional()
+  status: SessionStatus;
 }

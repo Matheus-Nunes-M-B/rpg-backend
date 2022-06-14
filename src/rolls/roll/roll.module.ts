@@ -8,5 +8,6 @@ import { Roll } from './entities/roll.entity';
   imports: [TypeOrmModule.forFeature([Roll])],
   controllers: [RollController],
   providers: [RollService],
+  exports: [RollService],
 })
 export class RollModule {}

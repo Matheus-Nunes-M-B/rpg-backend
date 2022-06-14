@@ -14,8 +14,8 @@ export class UserService extends BaseService<
 > {
   constructor(
     @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
+    private readonly repo: Repository<User>,
   ) {
-    super(userRepository);
+    super(repo);
   }
 }

@@ -6,4 +6,7 @@ export class CreateRollDto {
 
   @ApiProperty()
   ownerId: number;
+
+  @ApiProperty()
+  sessionId: number;
 }

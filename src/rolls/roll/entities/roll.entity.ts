@@ -9,6 +9,7 @@ import {
 import { Dice } from './dice.entity';
 import { evaluate } from 'mathjs';
 import { User } from '~/users/user/entities/user.entity';
+import { Session } from '~/sessions/session/entities/session.entity';
 
 @Entity()
 export class Roll {
@@ -21,10 +22,15 @@ export class Roll {
   @Column()
   total: number;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, { eager: true })
   owner: User;
   @Column({ name: 'owner_id' })
   ownerId: number;
+
+  @ManyToOne(() => Session)
+  session: Session;
+  @Column({ name: 'session_id' })
+  sessionId: number;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
